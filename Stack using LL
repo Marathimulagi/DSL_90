@@ -1,0 +1,71 @@
+#include <iostream>
+using namespace std;
+
+// Node structure
+struct Node {
+    int data;
+    Node* next;
+};
+
+// Top pointer
+Node* top = NULL;
+
+//Push Operation
+void push(int value) {
+    Node* newNode = new Node();
+    newNode->data = value;
+    newNode->next = top;
+    top = newNode;
+    cout << "Inserted: " << value << endl;
+}
+
+//Pop Operation
+void pop() {
+    if (top == NULL) {
+        cout << "Stack Underflow\n";
+        return;
+    }
+    Node* temp = top;
+    cout << "Deleted: " << temp->data << endl;
+    top = top->next;
+    delete temp;
+}
+
+//Peek Operation
+void peek() {
+    if (top == NULL) {
+        cout << "Stack is empty\n";
+    } else {
+        cout << "Top element: " << top->data << endl;
+    }
+}
+
+//Display Stack
+void display() {
+    if (top == NULL) {
+        cout << "Stack is empty\n";
+        return;
+    }
+    Node* temp = top;
+    cout << "Stack elements:\n";
+    while (temp != NULL) {
+        cout << temp->data << endl;
+        temp = temp->next;
+    }
+}
+
+//Main Function
+int main() {
+    push(10);
+    push(20);
+    push(30);
+
+    display();
+
+    peek();
+
+    pop();
+    display();
+
+    return 0;
+}
